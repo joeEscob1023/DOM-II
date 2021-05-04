@@ -6,6 +6,10 @@ const heading = document.querySelector(".logo-heading");
 const body = document.querySelector("body");
 const container = document.querySelector(".container");
 const header = document.querySelector("header");
+const textContentH2 = document.querySelector(".text-content h2");
+const textContentP = document.querySelector(".text-content p");
+const imgContent = document.querySelector(".img-content");
+const image = document.querySelector(".img-content img");
 
 navArray.forEach((item) => {
   item.addEventListener("mouseover", (event) => {
@@ -68,6 +72,37 @@ const darkMode = (event) => {
       link.style.color = "black";
     });
   }
+  event.stopPropagation();
 };
 
 darkModeBtn.addEventListener("click", darkMode);
+
+textContentH2.textContent = "Double Click The Image For A Chance To Win!";
+textContentP.textContent =
+  "If you want to try and win an all paid trip to Las Vegas, test your luck and double click the image!";
+image.setAttribute("src", "https://i.gifer.com/7AW8.gif");
+image.style.width = "70%";
+
+const testYourLuck = (event) => {
+  let randomNumber = Math.floor(Math.random() * 10) + 1;
+  console.log(randomNumber);
+  if (randomNumber === 3) {
+    event.target.setAttribute(
+      "src",
+      "https://image.freepik.com/free-vector/casino-awards-777-casino-rating-icons-with-poker-chip-ribbon-illustration-casino-slots-game-ui_172107-657.jpg"
+    );
+  } else if (randomNumber !== 3) {
+    event.target.setAttribute(
+      "src",
+      "https://thumbs.dreamstime.com/b/you-lose-red-rubber-stamp-over-white-background-86701681.jpg"
+    );
+  }
+};
+
+imgContent.addEventListener("dblclick", testYourLuck);
+
+Array.from(document.links).forEach(function (link) {
+  link.addEventListener("click", function (event) {
+    event.preventDefault();
+  });
+});
